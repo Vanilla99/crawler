@@ -1,0 +1,94 @@
+{
+  "project": "sample-video-crawl",
+  "seeds": [
+    "https://www.w3schools.com/html/html5_video.asp"
+  ],
+  "scope": {
+    "allowed_domains": ["www.w3schools.com"],
+    "max_depth": 1,
+    "include": [],
+    "exclude": ["/login", "/account"],
+    "respect_robots": true
+  },
+  "fetch": {
+    "default": "http",
+    "timeout_seconds": 20,
+    "concurrency": 1,
+    "delay_per_domain_seconds": 0.5,
+    "per_domain_delay_seconds": {},
+    "domain_failure_threshold": 5,
+    "user_agent": "vcrawl/0.1 (+https://example.invalid/vcrawl)",
+    "browser_headless": true,
+    "browser_profile": null,
+    "retries": 2,
+    "retry_backoff_seconds": 1
+  },
+  "network": {
+    "proxy_url": null,
+    "proxy_urls": [],
+    "headers": {},
+    "cookies_file": null,
+    "http_cache": false,
+    "http_cache_dir": null,
+    "session_pool": true,
+    "session_pool_size": 1
+  },
+  "queue": {
+    "backend": "sqlite",
+    "redis_url": null,
+    "redis_key_prefix": "vcrawl",
+    "stale_after_seconds": 300
+  },
+  "worker": {
+    "worker_id": null,
+    "heartbeat_interval_seconds": 30
+  },
+  "extract": {
+    "mode": "video",
+    "builtin_plugins": ["gallery", "playlist", "m3u8", "jsonld"],
+    "plugin_paths": [],
+    "plugin_configs": {}
+  },
+  "media": {
+    "resolver_order": ["builtin", "yt_dlp"],
+    "download": false,
+    "quality": "best",
+    "max_downloads_per_run": 100,
+    "download_concurrency": 2,
+    "overwrite": false,
+    "probe": false,
+    "thumbnail": false,
+    "thumbnail_at_seconds": 1,
+    "filename_template": "{title_or_hash}.{ext}"
+  },
+  "storage": {
+    "state": ".vcrawl/state.sqlite",
+    "files": "downloads",
+    "metadata": "metadata.jsonl"
+  },
+  "archive": {
+    "enabled": true,
+    "root": ".vcrawl/archive",
+    "html_snapshots": true,
+    "jsonl_sidecar": true,
+    "manifest": true,
+    "warc": false
+  },
+  "observability": {
+    "enabled": true,
+    "json_logs": true,
+    "json_log_path": ".vcrawl/logs/events.jsonl",
+    "timeline": true,
+    "opentelemetry": false,
+    "service_name": "vcrawl"
+  },
+  "discovery": {
+    "sitemaps": [],
+    "feeds": [],
+    "max_discovered_urls": 1000
+  },
+  "schedule": {
+    "interval_seconds": 0,
+    "max_runs": 1
+  }
+}

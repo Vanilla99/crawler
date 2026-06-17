@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vcrawl"
+version = "0.1.0"
+description = "A Python-first video-oriented web crawling framework MVP."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "Codex" }]
+license = { text = "MIT" }
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+  "Topic :: Multimedia :: Video",
+]
+dependencies = []
+
+[project.optional-dependencies]
+browser = ["playwright>=1.40"]
+yaml = ["PyYAML>=6"]
+crawler = [
+  "scrapy>=2.16; python_version >= '3.10'",
+  "crawlee>=1.0",
+]
+media = ["yt-dlp>=2025.1.1"]
+redis = ["redis>=5"]
+postgres = ["psycopg[binary]>=3.1"]
+distributed = [
+  "redis>=5",
+  "psycopg[binary]>=3.1",
+]
+
+[project.scripts]
+vcrawl = "vcrawl.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["vcrawl*"]
